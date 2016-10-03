@@ -1,0 +1,6 @@
+[submodule "content/bosh"]
+	path = content/bosh
+	url = git@github.com:dgodd/docs-bosh.git
+[submodule "content/buildpacks"]
+	path = content/buildpacks
+	url = git@github.com:dgodd/docs-buildpacks.git
