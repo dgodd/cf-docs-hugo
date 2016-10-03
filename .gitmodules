@@ -4,3 +4,6 @@
 [submodule "content/buildpacks"]
 	path = content/buildpacks
 	url = git@github.com:dgodd/docs-buildpacks.git
+[submodule "content/deploying-cf"]
+	path = content/deploying-cf
+	url = git@github.com:dgodd/docs-deploying-cf.git
