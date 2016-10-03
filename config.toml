@@ -3,3 +3,4 @@ languageCode = "en-us"
 title = "Cloud Foundry Documentation"
 canonifyurls = true
 uglyURLs = true
+theme = "cloudfoundry"
