@@ -2,5 +2,5 @@ baseurl = "http://replace-this-with-your-hugo-site.com/"
 languageCode = "en-us"
 title = "Cloud Foundry Documentation"
 canonifyurls = true
-uglyURLs = true
+uglyURLs = false
 theme = "cloudfoundry"
