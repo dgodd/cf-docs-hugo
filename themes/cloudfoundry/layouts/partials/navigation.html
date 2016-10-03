@@ -1,95 +1,43 @@
-<div class="aside">
-
-<style type="text/css">
-	.aside li.active::after {
-		content: "<";
-		color:#AC1E1A;
-	}
-
-	.aside li.active a {
-		color:#AC1E1A;
-	}
-</style>
-
-	
-<h1 >Navigation</h1>
+<div class="nav-content">
 <ul>
 {{ $currentNode := . }}
 {{ range .Site.Menus.main }}
-
-	<li  class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}active{{end}}">
-    <a href="{{.URL}}">{{.Name}}</a>
-	</li>
-        {{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}
-        {{ $.Scratch.Set "CurrentMenu" . }}
-        {{ $.Scratch.Add "Breadcrumbs" (print " > <a href='" .URL  "'>" .Name "</a>" )  }}
-	    {{ if .HasChildren }}
-	    <ul>
-	    {{ range .Children }}
-	    {{ if ne .Identifier ""}}
-	    <li class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}active{{end}}">
-	        <a href="{{.URL}}">{{ .Name }} </a>
-	    </li>
-			{{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}
-			{{ $.Scratch.Set "CurrentMenu" . }}
-			{{ $.Scratch.Add "Breadcrumbs" (print " > <a href='" .URL  "'>" .Name "</a>" )  }}
-			{{ if .HasChildren }}
-		    <ul>
-		    {{ range .Children }}
-		    {{ if ne .Identifier ""}}
-		    <li class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}active{{end}}">
-		        <a href="{{.URL}}">{{ .Name }}</a>
-		    </li>
-
-				{{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}
-				{{ $.Scratch.Set "CurrentMenu" . }}
-				{{ $.Scratch.Add "Breadcrumbs" (print " > <a href='" .URL  "'>" .Name "</a>" )  }}
-				{{ if .HasChildren }}
-			    <ul>
-			    {{ range .Children }}
-			    {{ if ne .Identifier ""}}
-			    <li class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}active{{end}}">
-			        <a href="{{.URL}}">{{ .Name }} </a>
-			    </li>
-
-					{{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}
-					{{ $.Scratch.Set "CurrentMenu" . }}
-					{{ $.Scratch.Add "Breadcrumbs" (print " > <a href='" .URL  "'>" .Name "</a>" )  }}
-					{{ if .HasChildren }}
-				    <ul>
-				    {{ range .Children }}
-				    {{ if ne .Identifier ""}}
-				    <li class="{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}active{{end}}">
-				        <a href="{{.URL}}">{{ .Name }} </a>
-				    </li>
-				    
-				    {{ end }}
-				    {{ end }}
-				    </ul>
-				    {{ end }}
-				    {{ end }}
-			    
-			    
-			    {{ end }}
-			    {{ end }}
-			    </ul>
-			    {{ end }}
-			    {{ end }}
-		    
-		    {{ end }}
-		    {{ end }}
-		    </ul>
-		    {{ end }}
-		    {{ end }}
-
-	    {{ end }}
-	    {{ end }}
-	    </ul>
-	    {{ end }}
-	    {{ end }}
-	    
-{{end}}
+<li  class="{{ if .HasChildren }}has_submenu{{ end }} {{if ($currentNode.IsMenuCurrent "main" .) }}active{{end}} {{if ($currentNode.HasMenuCurrent "main" .) }}expanded{{end}}">
+  <a href="{{.URL}}">{{.Name}}</a>
+  {{ if and .HasChildren (or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)) }}
+    <ul>
+      {{ range .Children }}
+        {{ if ne .Identifier ""}}
+          <li  class="{{ if .HasChildren }}has_submenu{{ end }} {{if ($currentNode.IsMenuCurrent "main" .) }}active{{end}} {{if ($currentNode.HasMenuCurrent "main" .) }}expanded{{end}}">
+            <a href="{{.URL}}">{{.Name}}</a>
+            {{ if and .HasChildren (or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)) }}
+              <ul>
+                {{ range .Children }}
+                  {{ if ne .Identifier ""}}
+                    <li  class="{{ if .HasChildren }}has_submenu{{ end }} {{if ($currentNode.IsMenuCurrent "main" .) }}active{{end}} {{if ($currentNode.HasMenuCurrent "main" .) }}expanded{{end}}">
+                      <a href="{{.URL}}">{{.Name}}</a>
+                      {{ if and .HasChildren (or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)) }}
+                        <ul>
+                          {{ range .Children }}
+                            {{ if ne .Identifier ""}}
+                              <li  class="{{ if .HasChildren }}has_submenu{{ end }} {{if ($currentNode.IsMenuCurrent "main" .) }}active{{end}} {{if ($currentNode.HasMenuCurrent "main" .) }}expanded{{end}}">
+                                  <a href="{{.URL}}">{{.Name}}</a>
+                              </li>
+                            {{ end }}
+                          {{ end }}
+                        </ul>
+                      {{ end }}
+                    </li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            {{ end }}
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  {{ end }}
+</li>
+{{ end }}
 </ul>
-
-
 </div>
