@@ -7,3 +7,6 @@
 [submodule "content/deploying-cf"]
 	path = content/deploying-cf
 	url = git@github.com:dgodd/docs-deploying-cf.git
+[submodule "content/cf-cli"]
+	path = content/cf-cli
+	url = git@github.com:dgodd/docs-cf-cli.git
